@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pitch InspiraTEC</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0b1a3c, #102f61);
+            color: #222;
+            margin: 0;
+            padding: 20px;
+        }
+        .main-container {
+            max-width: 1000px;
+            margin: auto;
+            background-color: #fff;
+            border-radius: 14px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        .tabs {
+            display: flex;
+            background-color: #102f61;
+        }
+        .tab-button {
+            flex-grow: 1;
+            padding: 15px 25px;
+            cursor: pointer;
+            border: none;
+            background-color: transparent;
+            color: #fff;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .tab-button:hover {
+            background-color: #143d88;
+        }
+        .tab-button.active {
+            background-color: #f39c12;
+            color: #102f61;
+        }
+        .tab-content {
+            display: none;
+            padding: 25px;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        /* Sección de teoría */
+        .theory-section h2 {
+            color: #102f61;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        .theory-card {
+            background-color: #f9f9f9;
+            border-left: 6px solid #f39c12;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .theory-card h3 {
+            margin-top: 0;
+            color: #102f61;
+        }
+
+        /* Sección de simulación */
+        .simulation-wrapper {
+            background-color: #102f61;
+            padding: 25px;
+            border-radius: 0 0 12px 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .presentation-container {
+            width: 100%;
+            max-width: 900px;
+            aspect-ratio: 16/9;
+            background-color: #f4f6fb;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px;
+            box-sizing: border-box;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.6s ease-in-out;
+        }
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .slide h1 { font-size: 3em; color: #fff; font-weight: 800; margin: 0; }
+        .slide h2 { font-size: 2.3em; color: #102f61; margin-bottom: 15px; }
+        .slide p { font-size: 1.2em; max-width: 80%; line-height: 1.6; }
+        .slide-title { background: linear-gradient(135deg, #143d88, #1c63a2); }
+        .slide-title p { color: #dfe6f2; font-size: 1.3em; }
+
+        .diagram-container { display: flex; justify-content: space-around; width: 100%; padding: 20px; }
+        .diagram-item { width: 45%; }
+        .diagram-item h4 { color: #102f61; margin-bottom: 5px; }
+
+        .big-number { font-size: 6em; color: #f39c12; font-weight: 900; }
+
+        .flowchart { background: #fff; border-radius: 10px; padding: 10px; border: 2px solid #ccc; }
+        .flowchart-step { font-weight: 700; margin: 0 5px; }
+
+        .team-container { display: flex; justify-content: space-around; width: 100%; flex-wrap: wrap; gap: 20px; }
+        .team-member { text-align: center; max-width: 200px; }
+        .avatar { width: 100px; height: 100px; border-radius: 50%; background: #f39c12; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 2em; font-weight: 700; margin: auto; }
+
+        .navigation { margin-top: 15px; display: flex; justify-content: space-between; width: 100%; max-width: 900px; }
+        .nav-button { background-color: #f39c12; color: #102f61; border: none; padding: 10px 20px; border-radius: 6px; font-size: 1em; font-weight: 600; cursor: pointer; transition: 0.3s; }
+        .nav-button:hover { background-color: #ffd460; }
+        .nav-button:disabled { background-color: #ccc; cursor: not-allowed; }
+    </style>
+</head>
+<body>
+
+<div class="main-container">
+    <div class="tabs">
+        <button class="tab-button active" onclick="openTab(event, 'Teoria')">Teoría del Pitch</button>
+        <button class="tab-button" onclick="openTab(event, 'Simulacion')">Presentación InspiraTEC</button>
+    </div>
+
+    <div id="Teoria" class="tab-content active theory-section">
+        <h2>¿Qué es un Pitch?</h2>
+        <p>Un pitch es una presentación breve, visual y persuasiva que comunica el valor, impacto y propósito de un proyecto. En el caso de <strong>InspiraTEC</strong>, permite mostrar cómo la inteligencia artificial puede transformar la planificación docente en Tecnología e Informática.</p>
+
+        <div class="theory-card">
+            <h3>Elementos Clave</h3>
+            <ul>
+                <li><strong>El Problema:</strong> la sobrecarga laboral y falta de recursos docentes.</li>
+                <li><strong>La Solución:</strong> un agente pedagógico inteligente que automatiza y personaliza planes de clase.</li>
+                <li><strong>El Valor:</strong> innovación, eficiencia y alineación con el MEN.</li>
+                <li><strong>El Equipo:</strong> un grupo Scrum comprometido con la transformación educativa.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="Simulacion" class="tab-content">
+        <div class="simulation-wrapper">
+            <div class="presentation-container">
+                <!-- Slide 1 -->
+                <div class="slide active slide-title" id="slide-1">
+                    <h1>InspiraTEC</h1>
+                    <p>Agente pedagógico inteligente para docentes de Tecnología e Informática</p>
+                </div>
+                <!-- Slide 2 -->
+                <div class="slide" id="slide-2">
+                    <h2>El Problema</h2>
+                    <div class="diagram-container">
+                        <div class="diagram-item">
+                            <h4>Desafíos docentes</h4>
+                            <p>Falta de tiempo, sobrecarga laboral y escasez de recursos digitales.</p>
+                        </div>
+                        <div class="diagram-item">
+                            <h4>Consecuencia</h4>
+                            <p>Planes de clase poco innovadores y desalineados con el MEN.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Slide 3 -->
+                <div class="slide" id="slide-3">
+                    <p>Más del</p>
+                    <div class="big-number">70%</div>
+                    <p>de los docentes en Montería afirman necesitar apoyo digital para planear sus clases de Tecnología e Informática.</p>
+                </div>
+                <!-- Slide 4 -->
+                <div class="slide" id="slide-4">
+                    <h2>La Solución</h2>
+                    <p><strong>InspiraTEC</strong> automatiza la creación de planes de clase usando inteligencia artificial adaptada al contexto educativo colombiano.</p>
+                    <div class="flowchart">
+                        <span class="flowchart-step">Analiza</span> ➜ 
+                        <span class="flowchart-step">Genera</span> ➜ 
+                        <span class="flowchart-step">Personaliza</span> ➜ 
+                        <span class="flowchart-step">Retroalimenta</span>
+                    </div>
+                </div>
+                <!-- Slide 5 -->
+                <div class="slide" id="slide-5">
+                    <h2>Propuesta de Valor</h2>
+                    <p>InspiraTEC optimiza el tiempo docente, garantiza la pertinencia curricular y fomenta la innovación en el aula.</p>
+                </div>
+                <!-- Slide 6 -->
+                <div class="slide" id="slide-6">
+                    <h2>Impacto Esperado</h2>
+                    <p>Mejora la calidad educativa en Montería, promueve la equidad digital y potencia la transformación pedagógica con IA.</p>
+                </div>
+                <!-- Slide 7 -->
+                <div class="slide" id="slide-7">
+                    <h2>Equipo del Proyecto (Scrum)</h2>
+                    <div class="team-container">
+                        <div class="team-member">
+                            <div class="avatar">DM</div>
+                            <h4>Daniel Camilo Tapias Ulloa</h4>
+                            <p><strong>Scrum Master</strong></p>
+                        </div>
+                        <div class="team-member">
+                            <div class="avatar">FM</div>
+                            <h4>Fabian Andrés Muñoz Salgado</h4>
+                            <p><strong>Dueño del Producto</strong></p>
+                        </div>
+                        <div class="team-member">
+                            <div class="avatar">LC</div>
+                            <h4>Luis Alejandro Caldera Caldera</h4>
+                            <p><strong>Equipo de Desarrollo</strong></p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Slide 8 -->
+                <div class="slide" id="slide-8">
+                    <h2>Llamado a la Acción</h2>
+                    <p>Buscamos respaldo institucional para implementar el piloto de InspiraTEC en las instituciones educativas de Montería.</p>
+                    <p><strong>Innovar hoy para transformar la enseñanza del mañana.</strong></p>
+                </div>
+                <!-- Slide 9 -->
+                <div class="slide" id="slide-9">
+                    <h2>Gracias</h2>
+                    <p>InspiraTEC: Educación + Tecnología + Innovación</p>
+                    <p>Universidad de Córdoba • 2025</p>
+                </div>
+            </div>
+
+            <div class="navigation">
+                <button class="nav-button" id="prevBtn" onclick="changeSlide(-1)" disabled>Anterior</button>
+                <button class="nav-button" id="nextBtn" onclick="changeSlide(1)">Siguiente</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openTab(evt, tabName) {
+        document.querySelectorAll('.tab-content').forEach(c => c.style.display = 'none');
+        document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
+        document.getElementById(tabName).style.display = 'block';
+        evt.currentTarget.classList.add('active');
+    }
+
+    let currentSlide = 1;
+    const totalSlides = 9;
+
+    function showSlide(n) {
+        document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+        document.getElementById(`slide-${n}`).classList.add('active');
+        document.getElementById('prevBtn').disabled = n === 1;
+        document.getElementById('nextBtn').disabled = n === totalSlides;
+    }
+
+    function changeSlide(n) {
+        currentSlide += n;
+        if (currentSlide < 1) currentSlide = 1;
+        if (currentSlide > totalSlides) currentSlide = totalSlides;
+        showSlide(currentSlide);
+    }
+
+    document.addEventListener('keydown', e => {
+        if (e.key === 'ArrowRight') changeSlide(1);
+        if (e.key === 'ArrowLeft') changeSlide(-1);
+    });
+</script>
+
+</body>
+</html>
